@@ -20,7 +20,7 @@ export const removeFavouriteData = (id) => {
     payload: id,
   };
 };
-//Added by Ambika
+
 export const deleteFavorites = (id) => {
   return (dispatch) => {
     dispatch(removeFavouriteData(id));

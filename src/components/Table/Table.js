@@ -11,7 +11,7 @@ export default function Table({ isFav }) {
   const [tableData, setTableData] = useState([]);
 
   const data = useSelector((state) => state.bankData.data);
-  // const masterData = useSelector((state) => state.data.data);
+  const masterData = useSelector((state) => state.data.data);
   const pageLimit = useSelector((state) => state.pagination.limit);
   const currentPage = useSelector((state) => state.pagination.currentPage);
   const searchParam = useSelector((state) => state.search.param);
@@ -27,9 +27,9 @@ export default function Table({ isFav }) {
   useEffect(() => {
     let key = Object.keys(searchParam)[0];
     let value = Object.values(searchParam)[0];
-    if (key && value && data) {
+    if (key && value && masterData) {
       let para = key.toLowerCase();
-      let newData = data.filter((el) =>
+      let newData = masterData.filter((el) =>
         el[para].toLowerCase().includes(value.toLowerCase())
       );
       dispatch(addMasterData(newData));
