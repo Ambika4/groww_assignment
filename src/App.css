@@ -29,3 +29,12 @@
   margin-bottom: 0;
   width: 80%;
 }
+
+@media only screen and (max-width: 576px) {
+  .app {
+    display: block;
+  }
+  .container {
+    margin-top: 1rem;
+  }
+}

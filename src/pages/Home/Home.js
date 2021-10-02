@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Search from "../../components/Search/Search";
 import Table from "../../components/Table/Table";
+import Pagination from "../../components/Pagination/pagination";
 import "./Home.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBankData } from "../../redux/BankData/bankAction";
@@ -53,6 +54,13 @@ export default function Home() {
         ) : error ? (
           <h1>Error</h1>
         ) : (
+          // <Pagination
+          //   data={bankData}
+          //   RenderComponent={Table}
+          //   title="Bank data"
+          //   pageLimit={5}
+          //   dataLimit={10}
+          // />
           <Table data={bankData} />
         )}
       </div>

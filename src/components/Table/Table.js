@@ -6,7 +6,7 @@ export default function Table({ data, isFav }) {
   const history = useHistory();
 
   const onClickHandler = (el) => {
-    console.log(el);
+   // console.log(el);
     history.push({
       pathname: `/bank-details/${el.ifsc}`,
       state: { bankDetails: el },
