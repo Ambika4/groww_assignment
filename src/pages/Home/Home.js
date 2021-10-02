@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchBankData } from "../../redux/BankData/bankAction";
 import TableSkeleton from "../../components/TableSkeleton/TableSkeleton";
 import { addMasterData } from "../../redux/FavData/favouriteAction";
-import Pagination from "../../components/Pagination/pagination";
+import Pagination from "../../components/Pagination/doPagination";
 // import useFetch from "../../utilites/useFetch";
 
 export default function Home() {
