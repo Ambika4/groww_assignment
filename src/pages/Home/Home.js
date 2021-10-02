@@ -19,7 +19,7 @@ export default function Home() {
   // const url = `https://vast-shore-74260.herokuapp.com/banks?city=${selectedCity}`;
 
   // const { data, loading = true, error } = useFetch(url);
-
+//
   useEffect(() => {
     dispatch(addMasterData(data));
   }, [data]);
