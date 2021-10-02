@@ -7,7 +7,7 @@ import {
   previousClicked,
   setPaginationLimit,
 } from "../../redux/PaginationData/paginationAction";
-import "./Pagination.css";
+import "./doPagination.css";
 
 function Pagination() {
   const [pageLimitDrop, setPageLimitDrop] = useState(10);
