@@ -3,8 +3,7 @@ import "./Table.css";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { addMasterData } from "../../redux/FavData/favouriteAction";
-// import TableSkeleton from "../TableSkeleton/TableSkeleton";
-//import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+
 export default function Table({ isFav }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ export default function Table({ isFav }) {
     const endIndex = startIndex + +pageLimit;
     let newData = data.length ? data.slice(startIndex, endIndex) : [];
 
-    setTableData(newData);
+    setTableData(newData.sort((a, b) => a.ifsc.localeCompare(b.ifsc)));
   }, [data, currentPage, pageLimit]);
 
   useEffect(() => {
@@ -42,7 +41,32 @@ export default function Table({ isFav }) {
       state: { bankDetails: el },
     });
   };
- //const tempData=isFav?
+
+  const checkClickHandler = (el) => {
+    let favBankDataStored = localStorage.getItem("favBankData");
+    let favData = [];
+    if (favBankDataStored) {
+      favData = JSON.parse(favBankDataStored);
+    }
+    favData.push(el);
+
+    localStorage.setItem("favBankData", JSON.stringify(favData));
+  };
+
+  const favTickCheck = (ifsc) => {
+    let favBankDataStored = localStorage.getItem("favBankData");
+    return favBankDataStored
+      ? JSON.parse(favBankDataStored).find((e) => e.ifsc === ifsc)
+      : false;
+  };
+
+  const checkRemoveHandler = (ifsc) => {
+    let favBankDataStored = localStorage.getItem("favBankData");
+    let favData = JSON.parse(favBankDataStored).filter((e) => e.ifsc !== ifsc);
+
+    localStorage.setItem("favBankData", JSON.stringify(favData));
+  };
+
   return (
     <div>
       <div className="table-comp">
@@ -68,8 +92,21 @@ export default function Table({ isFav }) {
                   <td>{el.ifsc}</td>
                   <td>{el.branch}</td>
                   <td>
-                    <input type="checkbox" />
-                    {/* <i class="far fa-heart-circle"></i> */}
+                    {favTickCheck(el.ifsc) ? (
+                      <>
+                        <input
+                          type="checkbox"
+                          onClick={() => checkRemoveHandler(el.ifsc)}
+                          defaultChecked={true}
+                        />
+                      </>
+                    ) : (
+                      <input
+                        type="checkbox"
+                        onClick={() => checkClickHandler(el)}
+                        defaultChecked={false}
+                      />
+                    )}
                   </td>
                 </tr>
               ))

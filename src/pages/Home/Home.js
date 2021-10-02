@@ -13,7 +13,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const [bankData, setBankData] = useState([]);
   const { data, loading = true, error } = useSelector((state) => state.data);
-  const selectedCity = useSelector((state) => state.search.city)||'MUMBAI';
+  const selectedCity = useSelector((state) => state.search.city) || "MUMBAI";
   // const searchParam = useSelector((state) => state.search.param);
 
   // const url = `https://vast-shore-74260.herokuapp.com/banks?city=${selectedCity}`;

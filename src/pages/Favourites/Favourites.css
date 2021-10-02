@@ -1,3 +1,30 @@
 .favourites {
   width: 100%;
 }
+.table-comp{
+  margin-top: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr {
+  line-height: 2rem;
+}
+th {
+  border: 1px solid #f4f9ff;
+  text-align: left;
+  padding: 8px;
+  background-color: #dddddd;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.bank-details{
+  text-decoration: underline;
+  cursor: pointer;
+}

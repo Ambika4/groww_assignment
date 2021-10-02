@@ -17,23 +17,14 @@ const favouriteReducer = (state = intialState, action) => {
       return newState;
     }
     case ADD_FAVOURITE: {
-      //const newState = { ...state };
-      return {
-        ...state,
-        fav: [action.payload, ...state.fav],
-      };
-      //return newState;
+      const newState = { ...state };
+
+      return newState;
     }
     case REMOVE_FAVOURITE: {
-      // const newState = { ...state };
+      const newState = { ...state };
 
-      // return newState;
-      return {
-        ...state,
-        fav: state.fav.filter(
-          (x) => x.id !== action.payload
-        ),
-      };
+      return newState;
     }
 
     default:

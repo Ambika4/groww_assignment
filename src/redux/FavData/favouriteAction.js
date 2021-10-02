@@ -20,16 +20,3 @@ export const removeFavouriteData = (id) => {
     payload: id,
   };
 };
-
-export const deleteFavorites = (id) => {
-  return (dispatch) => {
-    dispatch(removeFavouriteData(id));
-  };
-};
-
-export const updateFavorites = (id) => {
-  return (dispatch) => {
-    console.log(id);
-    dispatch(addFavouriteData(id));
-  };
-};

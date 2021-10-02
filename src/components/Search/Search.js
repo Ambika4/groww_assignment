@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Search.css";
 import { CITIES, CATEGORY } from "../../config/config";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,8 @@ export default function Search() {
   const dispatch = useDispatch();
   const selectedData = useSelector((state) => state.search);
 
+  const timer = useRef(null);
+
   useEffect(() => {
     setCity(selectedData.city);
     let key = Object.keys(selectedData.param)[0];
@@ -24,12 +26,19 @@ export default function Search() {
     }
   }, []);
 
+  const searchText = (obj) => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
+      dispatch(addSearchParam(obj));
+    }, 600);
+  };
+
   useEffect(() => {
     if (category) {
       let obj = {
         [category]: search,
       };
-      dispatch(addSearchParam(obj));
+      searchText(obj);
       if (search) dispatch(resetCurrent());
     }
   }, [search, category]);

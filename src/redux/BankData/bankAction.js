@@ -1,9 +1,6 @@
-import {
-  BANK_DATA,
-  BANK_DATA_LOADING,
-  BANK_DATA_ERROR,
-} from "./bankTypes";
-import {URL} from '../../config/config';
+import { URL } from "../../config/config";
+import { BANK_DATA, BANK_DATA_LOADING, BANK_DATA_ERROR } from "./bankTypes";
+
 export const getBankDataLoading = () => {
   return {
     type: BANK_DATA_LOADING,
