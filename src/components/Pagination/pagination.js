@@ -1,76 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { PAGINATION } from "../../config/config";
+import { addMasterData } from "../../redux/FavData/favouriteAction";
+import {
+  nextClicked,
+  previousClicked,
+  setPaginationLimit,
+} from "../../redux/PaginationData/paginationAction";
+import "./Pagination.css";
 
-export default function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
-    const [pages] = useState(Math.round(data.length / dataLimit));
-    const [currentPage, setCurrentPage] = useState(1);
+function Pagination() {
+  const [pageLimitDrop, setPageLimitDrop] = useState(10);
+  const pageLimit = useSelector((state) => state.pagination.limit);
+  const currentPage = useSelector((state) => state.pagination.currentPage);
 
-    function goToNextPage() {
-        setCurrentPage((page) => page + 1);
-    }
-    function goToPreviousPage() {
-        setCurrentPage((page) => page - 1);
-      }
+  const dispatch = useDispatch();
 
-      function changePage(event) {
-        const pageNumber = Number(event.target.textContent);
-        setCurrentPage(pageNumber);
-      }
+  useEffect(() => {
+    dispatch(setPaginationLimit(pageLimitDrop));
+  }, [pageLimitDrop]);
 
-      const getPaginatedData = () => {
-        const startIndex = currentPage * dataLimit - dataLimit;
-        const endIndex = startIndex + dataLimit;
-        return data.slice(startIndex, endIndex);
-      };
+  const dropDownHandler = (e) => {
+    setPageLimitDrop(e.target.value);
+  };
 
-      const getPaginationGroup = () => {
-        let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-        return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
-      };
+  const nextBtnClicked = () => {
+    dispatch(nextClicked());
+  };
+  const prevBtnClicked = () => {
+    dispatch(previousClicked());
+  };
 
-      return (
-        <div>
-          <h1>{title}</h1>
-      
-          {/* show the posts, 10 posts at a time */}
-          <div className="dataContainer">
-            {getPaginatedData().map((d, idx) => (
-              <RenderComponent key={idx} data={d} />
-            ))}
-          </div>
-      
-          {/* show the pagiantion
-              it consists of next and previous buttons
-              along with page numbers, in our case, 5 page
-              numbers at a time
-          */}
-          <div className="pagination">
-            {/* previous button */}
-            <button
-              onClick={goToPreviousPage}
-              className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
-            >
-              prev
-            </button>
-      
-            {/* show page numbers */}
-            {getPaginationGroup().map((item, index) => (
-              <button
-                key={index}
-                onClick={changePage}
-                className={`paginationItem ${currentPage === item ? 'active' : null}`}
-              >
-                <span>{item}</span>
-              </button>
-            ))}
-      
-            {/* next button */}
-            <button
-              onClick={goToNextPage}
-              className={`next ${currentPage === pages ? 'disabled' : ''}`}
-            >
-              next
-            </button>
-          </div>
-        </div>
-      );
+  return (
+    <div className="pagination">
+      <select onChange={dropDownHandler} className="pagination-select">
+        {PAGINATION.map((el, index) => (
+          <option value={el} key={index}>
+            {el}
+          </option>
+        ))}
+      </select>
+      <button
+        onClick={prevBtnClicked}
+        className="pagination-button"
+        disabled={currentPage === 1}
+      >
+        Prev
+      </button>
+      <span className="paginationItem">{currentPage}</span>
+      <button onClick={nextBtnClicked} className="pagination-button">
+        Next
+      </button>
+    </div>
+  );
 }
+
+export default Pagination;

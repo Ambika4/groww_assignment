@@ -14,16 +14,26 @@ const favouriteReducer = (state = intialState, action) => {
     case ADD_MASTER_DATA: {
       const newState = { ...state };
       newState.data = action.payload;
+      return newState;
     }
     case ADD_FAVOURITE: {
-      const newState = { ...state };
-
-      return newState;
+      //const newState = { ...state };
+      return {
+        ...state,
+        fav: [action.payload, ...state.fav],
+      };
+      //return newState;
     }
     case REMOVE_FAVOURITE: {
-      const newState = { ...state };
+      // const newState = { ...state };
 
-      return newState;
+      // return newState;
+      return {
+        ...state,
+        fav: state.fav.filter(
+          (x) => x.id !== action.payload
+        ),
+      };
     }
 
     default:

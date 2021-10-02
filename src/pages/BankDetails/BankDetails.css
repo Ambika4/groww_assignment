@@ -1,41 +1,41 @@
 .bank-detail-table {
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    padding: 50px;
-    border: 1px solid black;
-    height: fit-content;
-    margin: 10px;
-    padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  padding: 50px;
+  border: 1px solid black;
+  height: fit-content;
+  margin: 10px;
+  padding-bottom: 10px;
+}
+
+.bank-detail-table-label {
+  font-size: 26px;
+  padding: 18px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.bank-detail-table-name {
+  font-size: 21px;
+  cursor: context-menu;
+  text-decoration: underline;
+}
+.bank-detail-table-span {
+  font-size: 18px;
+  cursor: context-menu;
+}
+
+.no-bank-selected{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 576px) {
+  .bank-detail-table {
+    padding: 10px;
+    margin: 2px;
   }
-  
-  .bank-detail-table-label {
-    font-size: 26px;
-    padding: 18px;
-    font-weight: 600;
-    display: inline-block;
-  }
-  
-  .bank-detail-table-name {
-    font-size: 21px;
-    cursor: context-menu;
-    text-decoration: underline;
-  }
-  .bank-detail-table-span {
-    font-size: 18px;
-    cursor: context-menu;
-  }
-  
-  .no-bank-selected{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
-  }
-  
-  @media only screen and (max-width: 576px) {
-    .bank-detail-table {
-      padding: 10px;
-      margin: 2px;
-    }
-  }
+}

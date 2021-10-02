@@ -6,22 +6,21 @@ import {
   addSearchCity,
   addSearchParam,
 } from "../../redux/SearchData/searchAction";
+import { resetCurrent } from "../../redux/PaginationData/paginationAction";
 
 export default function Search() {
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
   const [category, setCat] = useState("");
   const dispatch = useDispatch();
-  // const selectedData = useSelector((state) => state.search);
-  const selectedCity=useSelector((state)=>state.search.city);
-  const selectedParam=useSelector((state)=>state.search.param);
+  const selectedData = useSelector((state) => state.search);
 
   useEffect(() => {
-    setCity(selectedCity);
-    let key = Object.keys(selectedParam)[0];
+    setCity(selectedData.city);
+    let key = Object.keys(selectedData.param)[0];
     setCat(key);
-    if (selectedParam[key]) {
-      setSearch(selectedParam[key]);
+    if (selectedData.param[key]) {
+      setSearch(selectedData.param[key]);
     }
   }, []);
 
@@ -31,11 +30,13 @@ export default function Search() {
         [category]: search,
       };
       dispatch(addSearchParam(obj));
+      if (search) dispatch(resetCurrent());
     }
   }, [search, category]);
 
   useEffect(() => {
     dispatch(addSearchCity(city));
+    dispatch(resetCurrent());
   }, [city]);
 
   return (
