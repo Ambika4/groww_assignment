@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import Search from "../../components/Search/Search";
 import Table from "../../components/Table/Table";
 import "./Home.css";
@@ -11,7 +11,7 @@ import Pagination from "../../components/Pagination/Pagination";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const [bankData, setBankData] = useState([]);
+  //const [bankData, setBankData] = useState([]);
   const { data, loading = true, error } = useSelector((state) => state.data);
   const selectedCity = useSelector((state) => state.search.city) || "MUMBAI";
   // const searchParam = useSelector((state) => state.search.param);

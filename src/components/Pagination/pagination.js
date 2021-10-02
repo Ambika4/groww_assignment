@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { PAGINATION } from "../../config/config";
-import { addMasterData } from "../../redux/FavData/favouriteAction";
+//import { addMasterData } from "../../redux/FavData/favouriteAction";
 import {
   nextClicked,
   previousClicked,
@@ -11,7 +11,7 @@ import "./Pagination.css";
 
 function Pagination() {
   const [pageLimitDrop, setPageLimitDrop] = useState(10);
-  const pageLimit = useSelector((state) => state.pagination.limit);
+  //const pageLimit = useSelector((state) => state.pagination.limit);
   const currentPage = useSelector((state) => state.pagination.currentPage);
 
   const dispatch = useDispatch();
