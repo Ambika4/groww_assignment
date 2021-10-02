@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table from "../../components/Table/Table";
+//import Table from "../../components/Table/Table";
 import "./Favourites.css";
 import { useHistory } from "react-router";
 
